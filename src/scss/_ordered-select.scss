@@ -1,0 +1,45 @@
+/*
+# Ordered Select
+*/
+
+
+/*
+## .ordered-select
+*/
+
+.ordered-select {
+  
+}
+
+
+/*
+### .ordered-select__select
+*/
+
+.ordered-select__select {
+  option {
+    
+  }
+}
+
+.ordered-select__select--disabled {
+  opacity: .5;
+}
+
+
+/*
+### .ordered-select__submit
+*/
+
+.ordered-select__submit {
+  
+}
+
+.ordered-select__submit--enabled {
+  
+}
+
+.ordered-select__submit--disabled {
+  display: none;
+}
+

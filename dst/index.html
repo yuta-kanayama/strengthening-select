@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>強化セレクタ</title>
+<link rel="stylesheet" href="strengthening-select.css">
+<script src="lib/underscore-min.js"></script>
+<script src="lib/jquery-1.11.3.min.js"></script>
+<script src="lib/backbone-min.js"></script>
+<script src="strengthening-select.js"></script>
+<script>
+$(function(){
+  
+  $('.ordered-select').each(function(){
+    //var $me = $(this);
+    new OrderedSelect({
+      el: this
+    });
+  });
+  
+  $('.selective-select').each(function(){
+    //var $me = $(this);
+    new SelectiveSelect({
+      el: this
+    });
+  });
+  
+});
+</script>
+</head>
+<body>
+
+
+<div class="ordered-select">
+  <form action="./" method="post">
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">あ行</option>
+        <option value="あ">あ</option>
+        <option value="い">い</option>
+        <option value="う">う</option>
+        <option value="え">え</option>
+        <option value="お">お</option>
+      </select>
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">か行</option>
+        <option value="か">か</option>
+        <option value="き">き</option>
+        <option value="く">く</option>
+        <option value="け">け</option>
+        <option value="こ">こ</option>
+      </select>
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">さ行</option>
+        <option value="さ">さ</option>
+        <option value="し">し</option>
+        <option value="す">す</option>
+        <option value="せ">せ</option>
+        <option value="そ">そ</option>
+      </select>
+    </div>
+    <div class="ordered-select__submit ordered-select__submit--enabled">
+      <input type="submit" value="送信" />
+    </div>
+    <div class="ordered-select__submit ordered-select__submit--disabled">
+      <input type="button" value="選択してください" />
+    </div>
+  </form>
+</div>
+
+
+<div class="selective-select">
+  <form action="./" method="post">
+    <div class="selective-select__select-wrapper">
+      <select name="" id="" class="selective-select__select">
+        <option value="">た行</option>
+        <option value="た">た</option>
+        <option value="ち">ち</option>
+        <option value="つ">つ</option>
+        <option value="て">て</option>
+        <option value="と">と</option>
+      </select>
+    </div>
+    <div>
+      <select name="" id="">
+        <option value="">な行</option>
+        <option value="な">な</option>
+        <option value="に">に</option>
+        <option value="ぬ">ぬ</option>
+        <option value="ね">ね</option>
+        <option value="の">の</option>
+      </select>
+    </div>
+    <div>
+      <select name="" id="">
+        <option value="">は行</option>
+        <option value="は">は</option>
+        <option value="ひ">ひ</option>
+        <option value="ふ">ふ</option>
+        <option value="へ">へ</option>
+        <option value="ほ">ほ</option>
+      </select>
+    </div>
+    <div>
+      <select name="" id="">
+        <option value="">ま行</option>
+        <option value="ま">ま</option>
+        <option value="み">み</option>
+        <option value="む">む</option>
+        <option value="め">め</option>
+        <option value="も">も</option>
+      </select>
+    </div>
+    <div class="selective-select__submit selective-select__submit--enabled">
+      <input type="submit" value="送信" />
+    </div>
+    <div class="selective-select__submit selective-select__submit--disabled">
+      <input type="button" value="選択してください" />
+    </div>
+  </form>
+</div>
+
+
+<div class="ordered-select selective-select">
+  <form action="./" method="post">
+    <div class="ordered-select__select-wrapper selective-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select selective-select__select">
+        <option value="">や行</option>
+        <option value="や">や</option>
+        <option value="ゆ">ゆ</option>
+        <option value="よ">よ</option>
+      </select>
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">ら行</option>
+        <option value="ら">ら</option>
+        <option value="り">り</option>
+        <option value="る">る</option>
+        <option value="れ">れ</option>
+        <option value="ろ">ろ</option>
+      </select>
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">わ行</option>
+        <option value="わ">わ</option>
+        <option value="を">を</option>
+        <option value="ん">ん</option>
+      </select>
+    </div>
+    <div class="selective-select__submit selective-select__submit--enabled">
+      <input type="submit" value="送信" />
+    </div>
+    <div class="selective-select__submit selective-select__submit--disabled">
+      <input type="button" value="選択してください" />
+    </div>
+  </form>
+</div>
+
+
+</body>
+</html>
