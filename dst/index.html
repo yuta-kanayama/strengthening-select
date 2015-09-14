@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <title>強化セレクタ</title>
 <link rel="stylesheet" href="strengthening-select.css">
+<style type="text/css">
+<!-- 
+.ordered-select__select--disabled {
+  opacity: .5;
+}
+ -->
+</style>
 <script src="lib/underscore-min.js"></script>
 <script src="lib/jquery-1.11.3.min.js"></script>
 <script src="lib/backbone-min.js"></script>
@@ -12,16 +19,21 @@
 $(function(){
   
   $('.ordered-select').each(function(){
-    //var $me = $(this);
     new OrderedSelect({
       el: this
     });
   });
   
   $('.selective-select').each(function(){
-    //var $me = $(this);
     new SelectiveSelect({
       el: this
+    });
+  });
+  
+  $('.selective-select--any').each(function(){
+    new SelectiveSelect({
+      el: this,
+      target: 'any'
     });
   });
   
@@ -33,6 +45,7 @@ $(function(){
 
 <div class="ordered-select">
   <form action="./" method="post">
+    順番ごとに選択したら送信可
     <div class="ordered-select__select-wrapper">
       <select name="" id="" class="ordered-select__select">
         <option value="">あ行</option>
@@ -75,6 +88,7 @@ $(function(){
 
 <div class="selective-select">
   <form action="./" method="post">
+    必須をすべて選択したら送信可
     <div class="selective-select__select-wrapper">
       <select name="" id="" class="selective-select__select">
         <option value="">た行</option>
@@ -83,10 +97,10 @@ $(function(){
         <option value="つ">つ</option>
         <option value="て">て</option>
         <option value="と">と</option>
-      </select>
+      </select> 必須
     </div>
-    <div>
-      <select name="" id="">
+    <div class="selective-select__select-wrapper">
+      <select name="" id="" class="selective-select__select">
         <option value="">な行</option>
         <option value="な">な</option>
         <option value="に">に</option>
@@ -127,12 +141,33 @@ $(function(){
 
 <div class="ordered-select selective-select">
   <form action="./" method="post">
-    <div class="ordered-select__select-wrapper selective-select__select-wrapper">
+    順番ごとに選択し、なおかつ必須のものを選択したら送信可
+    <div class="ordered-select__select-wrapper">
       <select name="" id="" class="ordered-select__select selective-select__select">
         <option value="">や行</option>
         <option value="や">や</option>
         <option value="ゆ">ゆ</option>
         <option value="よ">よ</option>
+      </select> 必須
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">あ行</option>
+        <option value="あ">あ</option>
+        <option value="い">い</option>
+        <option value="う">う</option>
+        <option value="え">え</option>
+        <option value="お">お</option>
+      </select>
+    </div>
+    <div class="ordered-select__select-wrapper">
+      <select name="" id="" class="ordered-select__select">
+        <option value="">か行</option>
+        <option value="か">か</option>
+        <option value="き">き</option>
+        <option value="く">く</option>
+        <option value="け">け</option>
+        <option value="こ">こ</option>
       </select>
     </div>
     <div class="ordered-select__select-wrapper">
@@ -151,6 +186,59 @@ $(function(){
         <option value="わ">わ</option>
         <option value="を">を</option>
         <option value="ん">ん</option>
+      </select>
+    </div>
+    <div class="selective-select__submit selective-select__submit--enabled">
+      <input type="submit" value="送信" />
+    </div>
+    <div class="selective-select__submit selective-select__submit--disabled">
+      <input type="button" value="選択してください" />
+    </div>
+  </form>
+</div>
+
+
+<div class="selective-select--any">
+  <form action="./" method="post">
+    どれかひとつでも選択したら送信可
+    <div class="selective-select__select-wrapper">
+      <select name="" id="" class="selective-select__select">
+        <option value="">た行</option>
+        <option value="た">た</option>
+        <option value="ち">ち</option>
+        <option value="つ">つ</option>
+        <option value="て">て</option>
+        <option value="と">と</option>
+      </select> 必須
+    </div>
+    <div class="selective-select__select-wrapper">
+      <select name="" id="" class="selective-select__select">
+        <option value="">な行</option>
+        <option value="な">な</option>
+        <option value="に">に</option>
+        <option value="ぬ">ぬ</option>
+        <option value="ね">ね</option>
+        <option value="の">の</option>
+      </select> 必須
+    </div>
+    <div class="selective-select__select-wrapper">
+      <select name="" id="" class="selective-select__select">
+        <option value="">は行</option>
+        <option value="は">は</option>
+        <option value="ひ">ひ</option>
+        <option value="ふ">ふ</option>
+        <option value="へ">へ</option>
+        <option value="ほ">ほ</option>
+      </select> 必須
+    </div>
+    <div>
+      <select name="" id="">
+        <option value="">ま行</option>
+        <option value="ま">ま</option>
+        <option value="み">み</option>
+        <option value="む">む</option>
+        <option value="め">め</option>
+        <option value="も">も</option>
       </select>
     </div>
     <div class="selective-select__submit selective-select__submit--enabled">

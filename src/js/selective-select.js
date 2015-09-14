@@ -53,16 +53,21 @@ var SelectiveSelect = Backbone.View.extend({
   },
   
   
-  initialize: function() {
-    _.bindAll(this, 'changeSelect', 'switchSubmitStatus', 'disableSelect', 'isCanSubmit');
+  initialize: function(opt) {
+    _.bindAll(this, 'changeSelect', 'switchSubmitStatus', 'isCanSubmit');
+    
+    var defaults = {
+      target: 'all'
+    };
+    this.opt = _.extend(defaults, opt);
     
     this.$enabled = this.$('.selective-select__submit--enabled');
     this.$disabled = this.$('.selective-select__submit--disabled');
     this.$select = this.$('.selective-select__select');
     
     this.select = new SelectiveSelectCollection();
-    this.$select.each(_.bind(function(i, e) {
-      var $me = $(e),
+    this.$select.each(_.bind(function(i, me) {
+      var $me = $(me),
           val = $me.val();
       this.select.add({
         val: val,
@@ -70,7 +75,7 @@ var SelectiveSelect = Backbone.View.extend({
       });
     }, this));
     
-    this.disableSelect( this.$select.not(':first') );
+    //this.disableSelect( this.$select.not(':first') );
     
     this.switchSubmitStatus();
   },
@@ -98,45 +103,20 @@ var SelectiveSelect = Backbone.View.extend({
   },
   
   
-  enableSelect: function($target) {
-    $target
-      .removeClass('selective-select__select--disabled')
-      .addClass('selective-select__select--enabled')
-      .find('option')
-      .removeAttr('disabled');
-    $target
-      .parents('.selective-select__select-wrapper')
-      .removeClass('selective-select__select-wrapper--disabled')
-      .addClass('selective-select__select-wrapper--enabled');
-  },
-  
-  
-  disableSelect: function($target) {
-    $target
-      .removeClass('selective-select__select--enabled')
-      .addClass('selective-select__select--disabled')
-      .find('option')
-      .attr('disabled', 'disabled');
-    $target
-      .parents('.selective-select__select-wrapper')
-      .removeClass('selective-select__select-wrapper--enabled')
-      .addClass('selective-select__select-wrapper--disabled');
-  },
-  
-  
   isCanSubmit: function() {
-    var result = true;
-    this.select.each(_.bind(function(model, index){
-      var selected = model.get('selected');
-      if(!selected) result = false;
-      if(index) {
-        if(this.select.at(index-1).get('selected')) {
-          this.enableSelect(this.$select.eq(index));
-        } else {
-          this.disableSelect(this.$select.eq(index));
-        }
-      }
-    }, this));
+    if('any' == this.opt.target) {
+      var result = false;
+      this.select.each(_.bind(function(model, index){
+        var selected = model.get('selected');
+        if(selected) result = true;
+      }, this));
+    } else {
+      var result = true;
+      this.select.each(_.bind(function(model, index){
+        var selected = model.get('selected');
+        if(!selected) result = false;
+      }, this));
+    }
     return result;
   }
   

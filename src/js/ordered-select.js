@@ -54,7 +54,7 @@ var OrderedSelect = Backbone.View.extend({
   
   
   initialize: function() {
-    _.bindAll(this, 'changeSelect', 'switchSubmitStatus', 'disableSelect', 'isCanSubmit');
+    _.bindAll(this, 'changeSelect', 'switchSubmitStatus', 'enableSelect', 'disableSelect', 'isCanSubmit');
     
     this.$enabled = this.$('.ordered-select__submit--enabled');
     this.$disabled = this.$('.ordered-select__submit--disabled');
