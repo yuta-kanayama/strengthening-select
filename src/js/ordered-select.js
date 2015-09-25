@@ -81,6 +81,7 @@ var OrderedSelect = Backbone.View.extend({
         val = $me.val(),
         index = this.$select.index(e.target);
     
+    //console.log('changeSelect', index);
     this.select.at(index).set('val', val);
     
     this.switchSubmitStatus();

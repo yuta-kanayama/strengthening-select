@@ -54,7 +54,7 @@ var SelectiveSelect = Backbone.View.extend({
   
   
   initialize: function(opt) {
-    _.bindAll(this, 'changeSelect', 'switchSubmitStatus', 'isCanSubmit');
+    _.bindAll(this, 'resetVal', 'changeSelect', 'switchSubmitStatus', 'isCanSubmit');
     
     var defaults = {
       target: 'all'
@@ -81,6 +81,15 @@ var SelectiveSelect = Backbone.View.extend({
   },
   
   
+  resetVal: function() {
+    this.select.each(_.bind(function(model, i){
+      var val = this.$select.eq(i).val();
+      if(null == val) val = '';
+      model.set('val', val);
+    }, this));
+  },
+  
+  
   changeSelect: function(e) {
     var $me = $(e.target),
         val = $me.val(),
@@ -104,6 +113,7 @@ var SelectiveSelect = Backbone.View.extend({
   
   
   isCanSubmit: function() {
+    this.resetVal();
     if('any' == this.opt.target) {
       var result = false;
       this.select.each(_.bind(function(model, index){
